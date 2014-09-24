@@ -13,9 +13,9 @@ def check(bitcoind, net):
     if not (yield net.PARENT.RPC_CHECK(bitcoind)):
         print >>sys.stderr, "    Check failed! Make sure that you're connected to the right bitcoind with --bitcoind-rpc-port!"
         raise deferral.RetrySilentlyException()
-    if not net.VERSION_CHECK((yield bitcoind.rpc_getinfo())['version']):
-        print >>sys.stderr, '    Bitcoin version too old! Upgrade to 0.6.4 or newer!'
-        raise deferral.RetrySilentlyException()
+#    if not net.VERSION_CHECK((yield bitcoind.rpc_getinfo())['version']):
+#        print >>sys.stderr, '    Bitcoin version too old! Upgrade to 0.6.4 or newer!'
+#        raise deferral.RetrySilentlyException()
 
 @deferral.retry('Error getting work from bitcoind:', 3)
 @defer.inlineCallbacks

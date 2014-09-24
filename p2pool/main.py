@@ -328,6 +328,8 @@ def main(args, net, datadir_path, merged_urls, worker_endpoint):
                             math.format_binomial_conf(stale_orphan_shares + stale_doa_shares, shares, 0.95, lambda x: (1 - x)/(1 - stale_prop)),
                             node.get_current_txouts().get(bitcoin_data.pubkey_hash_to_script2(my_pubkey_hash), 0)*1e-8, net.PARENT.SYMBOL,
                         )
+			print(node.bitcoind_work.value['bits'])
+			print(real_att_s)
                         this_str += '\n Pool: %sH/s Stale rate: %.1f%% Expected time to block: %s' % (
                             math.format(int(real_att_s)),
                             100*stale_prop,
@@ -364,8 +366,8 @@ def run():
     parser = fixargparse.FixedArgumentParser(description='p2pool (version %s)' % (p2pool.__version__,), fromfile_prefix_chars='@')
     parser.add_argument('--version', action='version', version=p2pool.__version__)
     parser.add_argument('--net',
-        help='use specified network (default: einsteinium)',
-        action='store', choices=sorted(realnets), default='einsteinium', dest='net_name')
+        help='use specified network (default: greencoin)',
+        action='store', choices=sorted(realnets), default='greencoin', dest='net_name')
     parser.add_argument('--testnet',
         help='''use the network's testnet''',
         action='store_const', const=True, default=False, dest='testnet')
